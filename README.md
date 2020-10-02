@@ -23,8 +23,6 @@ In my current prototype I have implemented a feature by which farmers can contro
 
 **It works proper when on smartphone (Press Ctrl +Shift +I)**
 
-Demo 
-
-[Menu](https://yogpanjarale.github.io/Farm-Helper-app/menu.html)
+Demo link [Menu](https://yogpanjarale.github.io/Farm-Helper-app/menu.html)
 
 *Strat with menu.html file*
