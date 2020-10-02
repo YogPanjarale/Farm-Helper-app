@@ -1,0 +1,158 @@
+:root{
+    --primary-color:#00ee24;
+    --primary-color2: #f6ffd4;
+    --primary-background:#ADDBBD/*#bedadd#*/;
+    --primary-text:#d15e3e;
+    font-size:16px;
+    font-family: 'Open Sans';
+}
+
+
+*{
+    background-color: var(--primary-background);
+}
+p{
+    color: var(--primary-text)
+}
+.navbar{
+    display:flex;
+    flex-direction: column;
+
+}
+.navbar li {
+    border: 0.2em solid var(--primary-text);
+    background-color: var(--primary-color2);
+    max-width:7 5%;
+    border-radius:5%;
+    margin:0.25em;
+    padding:0.2em;
+    text-indent: 10%;
+}
+.navbar h1{
+    background-color: #00000000;
+    color:var(--primary-text)
+}
+.navbar{
+    display: flex;
+    flex-wrap: space-evenly;
+    text-indent: 0%;
+    padding-left: 1em;
+    padding:1em;
+    background-color:#ffffff22;
+    border: 0.2em solid var(--primary-text);
+    border-radius: 1em;
+}
+.navbar a{
+   color: var(--primary-text);
+   background-color:#00000000;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+  /* ::-webkit-datetime-edit { padding: 0em;  user-select: none; }
+  ::-webkit-datetime-edit-fields-wrapper { background: silver; }
+  ::-webkit-datetime-edit-text { color: red; padding: 3rem 0.3em; }
+  ::-webkit-datetime-edit-month-field { color: blue; }
+  ::-webkit-datetime-edit-day-field { color: green; }
+  ::-webkit-datetime-edit-year-field { color: purple; }*/
+  /* ::-webkit-inner-spin-button { display: none; }  */
+  ::-webkit-calendar-picker-indicator {
+      border:solid 0.2em var(--primary-color);
+      background-color:var(--primary-color2);
+      color:var(--primary-color);
+        margin:0.2em;
+        border-radius:5%;
+    height: 2em; width: 5em;}
+    input[type=datetime-local]  {
+        color:var(--primary-color);
+        border: 0.4em var(--primary-color);
+        border-left: 6px solid var(--primary-color);
+        background-color: var(--primary-color2);
+        border-radius:2.5% ;
+        margin:2em;
+ }   
+ input[type=button], input[type=submit],input[type="text"] {
+     margin:1em;
+    display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color:var(--primary-color);
+  background-color: var(--primary-color2);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 9px var(--primary-color1);
+  margin-top: 0px;
+  
+ }
+ ::placeholder{
+    color:var(--primary-color);
+    font-size: 0.6em;
+ }
+ .info{
+     position: relative;
+     /* top:5.5em;*/
+    left:2em; 
+     margin:0px;
+     padding:0px;
+    max-width: 50%;
+ }
+ input[type="text"] {
+     text-align: left;
+     padding:0.25em;
+     border-radius: 10% 10% 0% 0%;
+     color: var(--primary-color);
+     border-bottom: 0.1em solid var(--primary-color);
+    height: 1.5em;
+ }
+ input[type=text]:focus {
+     border-radius: 0%;
+     text-decoration: underline;
+    /* border: 0.1em solid grey;
+    border-bottom: 0.2em solid var(--primary-color); */
+
+  }
+ input[type=button]:active{
+    background-color: var(--primary-color1);
+    /* box-shadow: 0 5px var(--primary-color2); */
+    transform: translateY(4px);
+ }
+form{
+    display: flex;
+    flex-direction: column;
+}
+.Motor-Menu{
+    margin-top:1em;
+    border-bottom: 1em solid #000000
+}
+ .menu{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+}
+/*
+.add-task{
+    display: block;
+    flex-direction: row;
+    flex-wrap: space-evenly;
+}
+.add-task:input[type="text"]{
+    color: #000000;
+}
+.demo{
+    color: #000000;
+}
+.add-task-button{
+    margin-left:0px;
+    margin :100px;
+    color: #000000;
+    background-color: #000000;
+} */

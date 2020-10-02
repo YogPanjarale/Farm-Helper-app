@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top">
+        <input type="button" onclick="window.location.href='menu.html'" id="back" value=❮>
+        <!-- <input type="button" id="Data" disabled="disabled" onload="update" value="𖡄"> -->
+      </div>
+    <!-- <a href="controller.html">link</a> -->
+    <form class="menu">
+        <p class="info">Enter Motor Id</p>
+        <input type="text" id="Motor-id" style="margin-top: 0.2em;margin-bottom:0.5em;"placeholder="Motor Id" required >
+        <input type="button" id="Motor-Menu" style="margin-top: 1em;margin-bottom:1em;"  value="Open Motor Controller">
+
+    </form>
+    <!-- <p>My idea is for small farmers to make an app for thier work management
+
+        farmer can set time for when they want to do a task,[they can enter thier location ,soil water test ](loction to get data of area{climate,soil type})
+        they can see weather forecast so that they can plan accoringly
+        there can be preprogramed time table for crops baseed on existing data
+                [when to cultivate ,when to sow ,when to irrigate,when to fertilize/peticide,when to harvest ]
+        they can plan on long term (maybe 3-4 months)for a crop and create their calander for months/year (it may remind you by sms/call/email)
+        and plan weekly with help of weather (and also electicity schedule{can fetch electricity shedule from gov web})
+        they can also have(get)suggetions for what they should do next based on ai trained on previous data
+        controlling water pump to irrigate iot;
+        sheduling(for {salary of workers,bills(electricity/loan/policies),)
+        they can have plantix intregated(maybe)</p> -->
+</body>
+<script>
+    var btn=document.getElementById('Motor-Menu')
+    var input=document.getElementById('Motor-id')
+    btn.onclick = function(){
+        if(input.validity.valueMissing==false){
+        console.log("Button presed")
+       window.location.href="controller.html"  + '#'+input.value;
+        }
+        else{
+            alert("please enter Motor ID")
+        }
+    }
+    input.addEventListener("onclick",function(){
+        btn.disabled=false;
+    })
+</script>
+</html>

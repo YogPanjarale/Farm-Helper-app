@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor Controller</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="file.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+     <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBakP7V8WHuKh2Zoeq2uP1Y9kWn3MNjBW8",
+        authDomain: "farm-motor.firebaseapp.com",
+        databaseURL: "https://farm-motor.firebaseio.com",
+        projectId: "farm-motor",
+        storageBucket: "farm-motor.appspot.com",
+        messagingSenderId: "161981808132",
+        appId: "1:161981808132:web:335d3552f016bb27787f51"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      var database =firebase.database();
+    </script>
+    
+</head>
+
+<body>
+  <div class="top">
+  <input type="button" onclick="window.location.href='home.html'" id="back" value=❮>
+  <input type="button" id="key" disabled="disabled">
+
+  <input type="button" id="Data" disabled="disabled" onload="update" value="𖡄">
+</div>
+    <form>
+        <input type="button" id="On-Button" value="Turn On The Motor">
+        <input type="button" id="Off-Button" value="Turn Off The Motor">
+        <input type="datetime-local" name="Date-Time"  id="datetime">
+
+    </form>
+    <script>
+      // console.log("hello")
+      // date = new Date()
+      var field = document.querySelector("#datetime")
+      field.value = resultInDate(new Date())
+      console.log(field.value)
+     field.min=field.value;
+     document.getElementById("key").value=key;
+     document.getElementById("Off-Button").addEventListener("click", function() {
+     setDb(false)
+     console.log("Off-Button")
+     });
+     document.getElementById("On-Button").addEventListener("click", function() {
+     setDb(true)
+     console.log("On-Button")
+     });
+    
+     document.onclick =()=>{update();console.log("update called")}
+     
+</script>
+</body>
+
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
+    rel="stylesheet"/>
+</head>
+<body>
+    <nav class ="navbar" id="navbar">
+        <h1> Menu</h1>
+        <ul class="navbar-nav">
+            <li style ="margin-bottom:1em;margin-top:2em;height:2em;"><a href="home.html"> Motor Controller</a></li>
+            <li>Crop Scheduler</li>
+            <li>Task Manager</li>
+            <li>Soil Sensor</li>
+            <li>Moisture Sensor</li>
+            <li>Flood Sensor</li>
+            <li>Market</li>
+            <!-- <li>Kisan Rath</li> -->
+            <li>Pesticide</li>
+            <li>Fertigations</li>
+            <li>Drip Irrigation</li>
+            <li>Time Managrment</li>
+            <li>Weather</li>
+
+        </ul>
+    </nav>
+</body>
+<script>
+    if(window.innerWidth>window.innerHeight){
+        console.log("changing")
+        var n=document.getElementById("navbar")
+        // =window.innerHeight/2+"px"
+        console.log(n)
+        n.style.width=window.innerHeight/2 +"px";
+        
+    }
+</script>
+</html>

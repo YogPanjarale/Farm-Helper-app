@@ -1,0 +1,62 @@
+:root{
+    --primary-color:#00ee24;
+    --primary-color2: #f6ffd4;
+    --primary-background:#ADDBBD/*#bedadd#*/;
+    --primary-text:#d15e3e;
+}
+
+
+*{
+    background-color: var(--primary-background);
+}
+.add-task-text{
+    padding:0.25em;
+    font-size: 20px;
+    border-radius: 15px;
+    box-shadow: 0 9px var(--primary-color1);
+    background-color: var(--primary-color2);
+    outline:0.25em;
+    border: none;
+    text-indent: 1em;
+
+    outline-color: var(--primary-color);
+}
+.add-task-button{
+    background-color: var(--primary-color2);
+    border:0.25em solid var(--primary-text);
+    /* height: 10%; */
+    color: var(--primary-text);
+    font-size: 29px;
+    width: 100%;
+    border:none;
+    border-radius:15px;
+    margin-left: 0.25em;
+}
+.add-task-head{
+    display: flex;
+    /* flex-direction: row; */
+    flex-wrap: space-evenly;
+    padding:1em;
+    /* border:0.25em solid var(--primary-color) */
+}
+.add-task{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.add-task textarea{
+    display: none;
+    margin:1em;
+    padding:0.25em;
+    font-size: 20px;
+    border-radius: 15px;
+    box-shadow: 0 9px var(--primary-color1);
+    background-color: var(--primary-color2);
+    outline:0.25em;
+    border: none;
+    text-indent: 1em;
+
+    outline-color: var(--primary-color);
+}
+
