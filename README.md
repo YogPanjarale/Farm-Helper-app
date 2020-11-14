@@ -21,7 +21,7 @@ In my current prototype I have implemented a feature by which farmers can contro
 2. Now you will see a text-input where you can write id of the motor you want to control ,*this will write to database with that id name will be stored and can be used by IOT device*
 3. now **press open motor controller** an will see the controller where you can see the motor status and turn it on/off 
 
-**It works proper when on smartphone (Press Ctrl +Shift +I)**
+**It works proper when on smartphone (Press Ctrl +Shift +M)**
 
 ### Demo link [Menu](https://yogpanjarale.github.io/Farm-Helper-app/menu.html)
 
