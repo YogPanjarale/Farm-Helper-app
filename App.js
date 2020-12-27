@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import WelcomeScreen from './screens/WelcomeScreen'
 import {TabNavigator} from './components/TabNavigator'
 import { createAppContainer ,createSwitchNavigator} from 'react-navigation';
-
+import {DrawerNavigator} from './components/DrawerNavigator'
 class App extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +35,7 @@ var SwitchNavigator = createSwitchNavigator({
   // AnimationScreen:{screen:AnimationScreen},
   
   WelcomeScreen:{screen:WelcomeScreen},
-  Home:{screen:TabNavigator},
+  Drawer:{screen:DrawerNavigator},
  
   
 

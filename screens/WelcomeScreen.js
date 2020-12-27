@@ -8,7 +8,8 @@ import {
     Image,
     Modal
 } from 'react-native';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
+import { TextField } from 'react-native-materialui-textfield';
 
 import firebase from 'firebase/app'
 import 'firebase/auth'

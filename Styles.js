@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-
+import {colors} from 'co'
 const colors = {
     primary: '#5FB955',
     secondary: '#702863',
@@ -10,9 +10,9 @@ const colors = {
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.bg,
+        backgroundColor: colors.primary,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
         padding: 10
     },
     HomeImage: {
@@ -79,7 +79,7 @@ export const styles = StyleSheet.create({
         marginTop: 10,
         borderColor: "#FFAA00",
         borderStyle: "solid",
-        boxSizing: "border-box",
+        // boxSizing: "border-box",
         borderRadius: 20,
      
         alignItems: 'center'

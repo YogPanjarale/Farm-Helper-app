@@ -13,3 +13,4 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export default firebase.firestore();
+export const rldb = firebase.database();
