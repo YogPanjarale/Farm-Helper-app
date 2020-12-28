@@ -7,9 +7,12 @@ import {
 import { styles } from '../Styles'
 import MyHeader from '../components/MyHeader'
 import firebase from 'firebase/database'
-import db, { rldb } from '../config'
-import { TextField } from '@material-ui/core'
-import DateTimePicker from '@react-native-community/datetimepicker';
+import db, { rldb } from '../config';
+import { Button } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+// import { TextField } from '@material-ui/core'
+// import DateTimePicker from '@react-native-community/datetimepicker';
 class MotorsScreen extends Component {
     constructor(props) {
         super(props);
@@ -18,9 +21,10 @@ class MotorsScreen extends Component {
         };
     }
     toggleMotors = async () => {
-        rldb.ref(`motors/${this.state.motorId}/input/`).update({
-            IsOn: false
+        rldb.ref(`/devices/Dev-1234/`).update({
+            mainGate:true
         })
+        
     }
     render() {
         return (
@@ -33,9 +37,17 @@ class MotorsScreen extends Component {
                         </Text>
                     </TouchableOpacity>
                     <View>
-                        <DateTimePicker/>
-                        <RNDateTimePicker minimumDate={new Date(1950, 0, 1)} />
-
+                        <Button
+                            icon={
+                                <Icon
+                                    name="arrow-right"
+                                    size={15}
+                                    color="white"
+                                />
+                            }
+                            title="Press Me"
+                            onPress={this.toggleMotors}
+                        />
                     </View>
                 </View>
             </View>

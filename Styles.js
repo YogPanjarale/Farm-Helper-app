@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import {colors} from 'co'
+
 const colors = {
     primary: '#5FB955',
     secondary: '#702863',
@@ -10,9 +10,9 @@ const colors = {
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.primary,
+        backgroundColor: colors.bg,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
         padding: 10
     },
     HomeImage: {
