@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-const colors = {
+export const colors = {
     primary: '#5FB955',
     secondary: '#702863',
     bg: '#DDFFE0',
-    textprimary: '#0f0f0f'
+    textprimary: '#0f0f0f',
+    whiteText:'#f0f0f0'
 }
 
 export const styles = StyleSheet.create({
@@ -46,7 +47,14 @@ export const styles = StyleSheet.create({
     },
     Modal: {
         alignSelf: 'center',
-        backgroundColor: '#fffffffa',
+        backgroundColor: '#fff9',
+        borderColor: '#fff',
+        borderRadius: 20,
+        padding: 20
+    },
+    WelcomeModal: {
+        alignSelf: 'center',
+        backgroundColor: '#5ABF5666',
         borderColor: '#fff',
         borderRadius: 20,
         padding: 20
@@ -77,24 +85,41 @@ export const styles = StyleSheet.create({
         borderWidth: 2,
         margin: 5,
         marginTop: 10,
-        borderColor: "#FFAA00",
+        borderColor: "#FFcA00",
         borderStyle: "solid",
         // boxSizing: "border-box",
         borderRadius: 20,
-     
+        backgroundColor:'#ffffff0f',
         alignItems: 'center'
     },
     buttonText: {
         "width": 81,
         "height": 39,
-        "fontFamily": "Roboto",
+        // "fontFamily": "Roboto",
         "fontStyle": "normal",
         "fontWeight": "500",
         "fontSize": 20,
         "lineHeight": 23,
-        "display": "flex",
         "alignItems": "center",
         "textAlign": "center",
         "color": "#FFAA00"
+    },
+    inputLabel:{
+        color:colors.whiteText
+    },
+    inputContainer:{
+        borderColor:colors.whiteText
+    },
+    inputStyle:{
+        color:colors.whiteText
+    },
+    blackinputLabel:{
+        color:colors.primaryText
+    },
+    blackinputContainer:{
+        borderColor:colors.primaryText
+    },
+    blackinputStyle:{
+        color:colors.primaryText
     }
 })

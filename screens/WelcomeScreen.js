@@ -16,7 +16,7 @@ import db from "../config";
 // import { TextInput, } from 'react-native-paper';
 // import { Icon } from 'react-native-elements'
 
-import { styles } from "../Styles";
+import { styles,colors } from "../Styles";
 
 class WelcomeScreen extends Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class WelcomeScreen extends Component {
       .then((response) => {
         this.props.navigation.navigate("Home");
 
-        return alert("Logged In", response);
+        return //alert("Logged In", response);
       })
       .catch((error) => {
         var errorcode = error.code;
@@ -123,8 +123,8 @@ class WelcomeScreen extends Component {
     7. Confirm Password 
     */
   SignUpModal = () => (
-    <Modal style={styles.Modal} animationType="slide">
-      <Input
+    <Modal style={styles.WelcomeModal} animationType="slide">
+      <MyInput
         id=" Input first name"
         label="First Name"
         placeholder={this.state.input_firstName}
@@ -132,7 +132,7 @@ class WelcomeScreen extends Component {
           this.setState({ input_firstName: value });
         }}
       />
-      <Input
+      <MyInput
         id="Input Last Name"
         label="Last Name"
         placeholder={this.state.input_lastName}
@@ -157,7 +157,7 @@ class WelcomeScreen extends Component {
         }}
         multiline
       />
-      <Input
+      <MyInput
         id="Input UserName"
         label="UserName"
         placeholder={this.state.input_userName}
@@ -165,7 +165,7 @@ class WelcomeScreen extends Component {
           this.setState({ input_userName: value });
         }}
       />
-      <Input
+      <MyInput
         id="email Input"
         label="Email"
         placeholder={this.state.input_email}
@@ -173,7 +173,7 @@ class WelcomeScreen extends Component {
           this.setState({ input_email: value });
         }}
       />
-      <Input
+      <MyInput
         id="password input"
         label="Password"
         placeholder={this.state.input_password}
@@ -182,7 +182,7 @@ class WelcomeScreen extends Component {
         }}
         type="password"
       />
-      <Input
+      <MyInput
         id="confirm password input"
         label="Confirm Password"
         placeholder={this.state.input_confirmPassword}
@@ -207,20 +207,18 @@ class WelcomeScreen extends Component {
     </Modal>
   );
   LogInModal = () => (
-    <Modal style={styles.Modal} animationType="slide">
-      <Input
+    <Modal style={styles.WelcomeModal} animationType="slide">
+      <MyInput
         id="email Input"
         label="Email"
-        // placeholder="Email"
         value={this.state.input_email}
         onChangeText={(value) => {
           this.setState({ input_email: value });
         }}
       />
-      <Input
+      <MyInput
         id="password input"
         label="Password"
-        //  placeholder="Password"
         value={this.state.input_password}
         onChangeText={(value) => {
           this.setState({ input_password: value });
@@ -239,6 +237,21 @@ class WelcomeScreen extends Component {
       </View>
     </Modal>
   );
+}
+class MyInput extends Component {
+  render() {
+    return (
+      <Input
+        id={this.props.id}
+        label={this.props.label}
+        value={this.props.value}
+        inputStyle={styles.inputStyle}
+        inputContainerStyle={styles.inputContainer}
+        labelStyle={styles.inputLabel}
+        onChangeText={this.props.onChangeText}
+      />
+    );
+  }
 }
 
 export default WelcomeScreen;

@@ -5,9 +5,9 @@ import {
     Modal,
     TouchableOpacity
 } from 'react-native';
-import TextField from '@material-ui/core/TextField';
-import {  Icon } from 'react-native-elements';
 
+import {  Icon  } from 'react-native-elements';
+import Input from '../components/MyInput'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import db from '../config'
@@ -22,6 +22,7 @@ class SettingScreen extends Component {
             input_mobileNumber: '',
             input_address: '',
             input_userName: '',
+            input_MotorId:'',
             // input_Password: '',
             email:'',
             id:'user',
@@ -38,7 +39,8 @@ class SettingScreen extends Component {
            Contact:this.state.input_mobileNumber,
            Address:this.state.input_address,
             userName:this.state.input_userName,
-            email_id:this.state.email
+            email_id:this.state.email,
+            motorId:this.state.input_MotorId
         }).then((resopnse)=>{
             console.log(resopnse)
         })
@@ -70,6 +72,7 @@ class SettingScreen extends Component {
                         input_address: item.Address,
                         input_userName: item.userName,
                         email:item.email_id,
+                        motorId:item.motorId,
                         id:request.docs[0].id
                     })
                     console.log(list)
@@ -89,52 +92,55 @@ class SettingScreen extends Component {
                 <Modal style={styles.Modal}
                     animationType="slide"
                 >
-                    <TextField
+                    <Input
                         id=" Input first name"
                         label="First Name"
                         value={this.state.input_firstName}
-                        onChange={event => {
-                            const { value } = event.target;
+                        onChangeText={value => {
                             this.setState({ input_firstName: value });
                         }}
                     />
-                    <TextField
+                    <Input
                         id="Input Last Name"
                         label="Last Name"
                         value={this.state.input_lastName}
-                        onChange={event => {
-                            const { value } = event.target;
+                        onChangeText={value => {
                             this.setState({ input_lastName: value })
                         }}
                     />
-                    <TextField
+                    <Input
                         id="Input Mobile"
                         label="Mobile Number"
                         value={this.state.input_mobileNumber}
 
-                        onChange={event => {
-                            const { value } = event.target;
+                        onChangeText={value => {
                             this.setState({ input_mobileNumber: value })
                         }}
                     />
-                    <TextField
+                    <Input
                         id="Input Address"
                         label="Address"
                         // defaultValue={this.state.input_address}
                         value={this.state.input_address}
-                        onChange={event => {
-                            const { value } = event.target;
+                        onChangeText={value => {
                             this.setState({ input_address: value })
                         }}
                         multiline
                     />
-                    <TextField
+                    <Input
                         id="Input UserName"
                         label="UserName"
                         value={this.state.input_userName}
-                        onChange={event => {
-                            const { value } = event.target;
+                        onChangeText={value => {
                             this.setState({ input_userName: value })
+                        }}
+                    />
+                    <Input
+                        id="Input Motor Id"
+                        label="MotorId"
+                        value={this.state.input_MotorId}
+                        onChangeText={value => {
+                            this.setState({ input_MotorId: value })
                         }}
                     />
 
