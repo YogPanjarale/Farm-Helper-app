@@ -12,20 +12,27 @@ class MotorsScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            motorId: "motorId",
+            deviceId: "motorId",
             data: {},
+            mainGate: true,
+            motorRoom: true,
         };
     }
-    toggleMotors = async () => {
-        rldb.ref(`/devices/${this.state.motorId}/mainMotor`).update({
-            isOn: !this.state.data.isOn,
+    toggleMainGate = async () => {
+        rldb.ref(`/devices/${this.state.motorId}/`).update({
+            mainGate:!this.state.mainGate
+        });
+    };
+    toggleMotorRoom = async () => {
+        rldb.ref(`/devices/${this.state.motorId}/`).update({
+            motorRoom:!this.state.motorRoom
         });
     };
     componentDidMount() {
-        this.getMotorId();
+        this.getDeviceId();
         //this.getStats()
     }
-    getMotorId = () => {
+    getDeviceId = () => {
         var email = firebase.auth().currentUser.email;
         console.log(email);
         db.collection("users")
@@ -40,7 +47,8 @@ class MotorsScreen extends Component {
                     this.setState({
                         motorId: item.motorId,
                     });
-                    this.getStats();
+                    console.log(item.motorId);
+                    this.getStats(item.motorId);
                     // console.log(list)
                 },
                 (error) => {
@@ -48,44 +56,55 @@ class MotorsScreen extends Component {
                 }
             );
     };
-    getStats = () => {
-        var path = "/devices/" + this.state.motorId + "/mainMotor";
+    getStats = (id) => {
+        var path = "/devices/" + id;
         console.log("Path: " + path);
         var ref = firebase.database().ref(path);
         ref.on("value", (snapshot) => {
             const data = snapshot.val();
             console.log(data);
             this.setState({
-                data: data,
+                mainGate: data.mainGate,
+                motorRoom: data.motorRoom
+
             });
             //updateStarCount(postElement, data);
         });
     };
     Panel = () => {
-        var isOn = this.state.data.isOn
-        var onOrOff =(i)=> i ? "On" : "Off";
-        var powerStatus = this.state.data.powerStatus
+        var mainGate = this.state.mainGate
+        var onOrOff = (i) => i ? "On" : "Off";
+        var motorRoom = this.state.motorRoom
         return (
             <View style={styles.Modal}>
-                <Text style={{ fontSize: 25, fontWeight: 900 }}>Main Motor</Text>
+                <Text style={{ fontSize: 25, fontWeight: 900 }}>Lights Control</Text>
                 <View style={{ flex: 1, flexDirection: "row" }}>
-                    <Image style={{ width: 30, height: 30 }} source={require('../assets/pump' + onOrOff(isOn) + '.png')} />
+                    {//TODO : Add Lights Image
+                    }
+                    <Image style={{ width: 30, height: 30 }} source={require('../assets/power' + onOrOff(mainGate) + '.png')} />
                     <Text>
-                        Motor Status : <Text>{onOrOff(isOn)}</Text>
+                        Main Gate Light : <Text>{onOrOff(mainGate)}</Text>
                     </Text>
                     <Switch
                         trackColor={{ false: "#767577", true: "#81b0ff" }}
-                        thumbColor={isOn ? "#f5dd4b" : "#f4f3f4"}
+                        thumbColor={mainGate ? "#f5dd4b" : "#f4f3f4"}
                         ios_backgroundColor="#3e3e3e"
-                        onValueChange={this.toggleMotors}
-                        value={isOn}
+                        onValueChange={this.toggleMainGate}
+                        value={mainGate}
                     />
                 </View>
                 <View style={{ flex: 1, flexDirection: "row" }}>
-                    <Image style={{ width: 30, height: 30 }} source={require('../assets/power' + onOrOff(powerStatus) + '.png')} />
+                    <Image style={{ width: 30, height: 30 }} source={require('../assets/power' + onOrOff(motorRoom) + '.png')} />
                     <Text>
-                        Power Status : <Text>{onOrOff(powerStatus)}</Text>
+                        Motor Room Light  : <Text>{onOrOff(motorRoom)}</Text>
                     </Text>
+                    <Switch
+                        trackColor={{ false: "#767577", true: "#81b0ff" }}
+                        thumbColor={motorRoom ? "#f5dd4b" : "#f4f3f4"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={this.toggleMotorRoom}
+                        value={motorRoom}
+                    />
                 </View>
             </View>
         );
@@ -97,14 +116,14 @@ class MotorsScreen extends Component {
             <View style={{ flex: 1 }}>
                 <MyHeader title="Control Motors" navigation={this.props.navigation} />
                 <View style={styles.container}>
-                    <Text style={{ fontWeight: 800 }}>{this.state.motorId}</Text>
+                    <Text style={{ fontWeight: 800 }}>{this.state.deviceId}</Text>
                     {/* <Text>{JSON.stringify(this.state.data)}</Text> */}
                     <this.Panel></this.Panel>
                     <View>
                         <Button
                             icon={<Icon name="arrow-right" size={15} color="white" />}
                             title="Press Me"
-                            onPress={this.toggleMotors}
+                            onPress={this.toggleDevice}
                         />
                     </View>
                 </View>

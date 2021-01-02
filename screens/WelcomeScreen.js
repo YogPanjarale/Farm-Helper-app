@@ -8,7 +8,7 @@ import {
   Image,
   Modal,
 } from "react-native";
-import { Input } from "react-native-elements";
+import { Input,ThemeProvider } from "react-native-elements";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -140,7 +140,7 @@ class WelcomeScreen extends Component {
           this.setState({ input_lastName: value });
         }}
       />
-      <Input
+      <MyInput
         id="Input Mobile"
         label="Mobile Number"
         placeholder={this.state.input_mobileNumber}
@@ -148,7 +148,7 @@ class WelcomeScreen extends Component {
           this.setState({ input_mobileNumber: value });
         }}
       />
-      <Input
+      <MyInput
         id="Input Address"
         label="Address"
         placeholder={this.state.input_address}
@@ -238,18 +238,27 @@ class WelcomeScreen extends Component {
     </Modal>
   );
 }
+
+const theme={
+  Input:{
+    inputStyle:styles.inputStyle,
+    inputContainerStyle:styles.inputContainer,
+    labelStyle:styles.inputLabel
+  }
+}
 class MyInput extends Component {
   render() {
+    
     return (
+      <ThemeProvider theme={theme}> 
       <Input
         id={this.props.id}
         label={this.props.label}
         value={this.props.value}
-        inputStyle={styles.inputStyle}
-        inputContainerStyle={styles.inputContainer}
-        labelStyle={styles.inputLabel}
+       
         onChangeText={this.props.onChangeText}
       />
+      </ThemeProvider>
     );
   }
 }
