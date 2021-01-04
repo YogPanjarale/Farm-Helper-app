@@ -5,6 +5,7 @@
         "errorcode",
         "errormessege",
         "rldb",
+        "settingscontainer",
         "textprimary"
     ]
 }

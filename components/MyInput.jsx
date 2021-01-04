@@ -12,6 +12,7 @@ class MyInput extends Component {
           inputContainerStyle={styles.blackinputContainer}
           labelStyle={styles.blackinputLabel}
           onChangeText={this.props.onChangeText}
+          leftIcon={{type:"font-awesome", name: this.props.iconName }}
         />
       );
     }

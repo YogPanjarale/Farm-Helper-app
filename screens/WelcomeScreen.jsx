@@ -124,7 +124,7 @@ class WelcomeScreen extends Component {
     */
   SignUpModal = () => (
     <Modal style={styles.WelcomeModal} animationType="slide">
-      <MyInput
+      {/* <MyInput
         id=" Input first name"
         label="First Name"
         placeholder={this.state.input_firstName}
@@ -138,6 +138,14 @@ class WelcomeScreen extends Component {
         placeholder={this.state.input_lastName}
         onChangeText={(value) => {
           this.setState({ input_lastName: value });
+        }}
+      /> */}
+      <MyInput
+        id="Input UserName"
+        label="UserName"
+        placeholder={this.state.input_userName}
+        onChangeText={(value) => {
+          this.setState({ input_userName: value });
         }}
       />
       <MyInput
@@ -156,14 +164,6 @@ class WelcomeScreen extends Component {
           this.setState({ input_address: value });
         }}
         multiline
-      />
-      <MyInput
-        id="Input UserName"
-        label="UserName"
-        placeholder={this.state.input_userName}
-        onChangeText={(value) => {
-          this.setState({ input_userName: value });
-        }}
       />
       <MyInput
         id="email Input"

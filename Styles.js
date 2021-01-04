@@ -16,6 +16,13 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 10
     },
+    settingscontainer: {
+        flex: 1,
+        backgroundColor: colors.bg,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        padding: 10
+    },
     HomeImage: {
         width: 225,
         height: 225,
@@ -47,11 +54,25 @@ export const styles = StyleSheet.create({
     },
     Modal: {
         alignSelf: 'center',
-        backgroundColor: '#fff9',
+        backgroundColor: '#fff',
         borderColor: '#fff',
         borderRadius: 20,
-        padding: 20
+        padding: 5,
+        fontSize:10,
+        width:'90%',
     },
+    SettingModal: {
+        alignSelf: 'flex-start',
+        backgroundColor: '#fff',
+        borderColor: '#fff',
+        borderRadius: 20,
+        padding: 5,
+        fontSize:10,
+        paddingVertical:0,
+        width:'90%',
+        margin:10
+    },
+    
     WelcomeModal: {
         alignSelf: 'center',
         backgroundColor: '#5ABF5666',
@@ -88,8 +109,8 @@ export const styles = StyleSheet.create({
         borderColor: "#FFcA00",
         borderStyle: "solid",
         // boxSizing: "border-box",
-        borderRadius: 20,
-        backgroundColor:'#ffffff0f',
+        borderRadius: 5,
+        backgroundColor:'#FFcA00',
         alignItems: 'center'
     },
     buttonText: {
@@ -99,10 +120,9 @@ export const styles = StyleSheet.create({
         "fontStyle": "normal",
         "fontWeight": "500",
         "fontSize": 20,
-        "lineHeight": 23,
         "alignItems": "center",
         "textAlign": "center",
-        "color": "#FFAA00"
+        "color": colors.textprimary
     },
     inputLabel:{
         color:colors.whiteText
@@ -114,12 +134,15 @@ export const styles = StyleSheet.create({
         color:colors.whiteText
     },
     blackinputLabel:{
-        color:colors.primaryText
+        color:colors.primaryText,
+        fontSize:14
     },
     blackinputContainer:{
+        marginTop:5,
         borderColor:colors.primaryText
     },
     blackinputStyle:{
-        color:colors.primaryText
+        color:colors.primaryText,
+        fontSize:14
     }
 })
