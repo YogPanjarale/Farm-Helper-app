@@ -55,13 +55,6 @@ export const TabNavigator = createBottomTabNavigator({
             source={require("../assets/light outline.png")}
           />
         );
-        return (
-          <MaterialCommunityIcons
-            name={focused ? "lightbulb-outine" : "lightbulb"}
-            size={24}
-            color="black"
-          />
-        );
       },
       tabBarLabel: "Lights Screen",
     },

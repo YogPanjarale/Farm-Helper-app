@@ -1,20 +1,44 @@
-import {Input } from 'react-native-elements';
-import {styles,colors} from '../Styles'
-import React, { Component } from 'react';
+import { Icon, Input } from "react-native-elements";
+import { colors } from "../Styles";
+import React, { Component } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { TextInput } from "react-native";
 class MyInput extends Component {
-    render() {
-      return (
-        <Input
-          id={this.props.id}
-          label={this.props.label}
-          value={this.props.value}
-          inputStyle={styles.blackinputStyle}
-          inputContainerStyle={styles.blackinputContainer}
-          labelStyle={styles.blackinputLabel}
+  render() {
+    return (
+      <View style={styles.outside}>
+        {this.props.iconName?(<Icon
+        name={this.props.iconName}
+        />):null}
+        <Text style={{ textAlign: "justify" }}>{this.props.label}</Text>
+        <TextInput
+          style={styles.textInput}
           onChangeText={this.props.onChangeText}
-          leftIcon={{type:"font-awesome", name: this.props.iconName }}
+          value={this.props.value}
         />
-      );
-    }
+      </View>
+    );
   }
-  export default MyInput;
+}
+const styles = StyleSheet.create({
+  outside: {
+    backgroundColor: "#fff",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 5,
+    width: "100%",
+    marginVertical: 5,
+    marginHorizontal: 5,
+    justifyContent:'space-between',
+  },
+  textInput: {
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    backgroundColor: "#DFDAD7",
+    borderRadius: 10,
+    margin: 5,
+    padding: 5,
+  },
+});
+export default MyInput;

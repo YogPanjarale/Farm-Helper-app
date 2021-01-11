@@ -1,26 +1,23 @@
-import React from 'react';
-import {createDrawerNavigator} from 'react-navigation-drawer';
-import  {TabNavigator} from './TabNavigator'
-import SideBar  from './SideBar';
- import SettingScreen from "../screens/SettingsScreen";
- import LightsScreen from '../screens/LightsScreen'
-// import MyDonations from '../screens/MyDonations'
-// import Notifications from '../screens/Notifications'
+import React from "react";
+import { createDrawerNavigator } from "react-navigation-drawer";
+import { TabNavigator } from "./TabNavigator";
+import SideBar from "./SideBar";
+import TaskList from "../screens/TaskList";
 
-export const DrawerNavigator = createDrawerNavigator({
-  Home : {
-    screen : TabNavigator
+export const DrawerNavigator = createDrawerNavigator(
+  {
+    Home: {
+      screen: TabNavigator,
     },
-  Setting :{
-    screen:SettingScreen
+    TaskList: {
+      screen: TaskList,
+    },
   },
-  LightsScreen:{
-    screen:LightsScreen
+  {
+    contentComponent: SideBar,
+  },
+  {
+    //Todo make initial route name to Home
+    initialRouteName: "TaskList",
   }
-  },
-  {
-    contentComponent:SideBar
-  },
-  {
-    initialRouteName : 'Home'
-  })
+);

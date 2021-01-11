@@ -62,7 +62,7 @@ class SettingScreen extends Component {
           console.log(list);
           if (list.length < 1) return;
           var item = list[0];
-          console.log(item, request.docs[0]);
+          // console.log(item, request.docs[0]);
           this.setState({
             input_firstName: item.firstName,
             input_lastName: item.lastName,
@@ -82,29 +82,9 @@ class SettingScreen extends Component {
   };
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1,width:'100%' }}>
         <MyHeader title="Profile" navigation={this.props.navigation} />
         <View style={styles.settingscontainer}>
-          {/* <Modal style={styles.SettingModal}>
-            <Input
-              id=" Input first name"
-              label="First Name"
-              value={this.state.input_firstName}
-              onChangeText={(value) => {
-                this.setState({ input_firstName: value });
-              }}
-            />
-          </Modal>
-          <Modal style={styles.SettingModal}>
-            <Input
-              id="Input Last Name"
-              label="Last Name"
-              value={this.state.input_lastName}
-              onChangeText={(value) => {
-                this.setState({ input_lastName: value });
-            }}
-            />
-        </Modal> */}
           <MyInput
             id="Input UserName"
             label="UserName"

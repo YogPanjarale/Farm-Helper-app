@@ -4,24 +4,27 @@ export const colors = {
     primary: '#5FB955',
     secondary: '#702863',
     bg: '#DDFFE0',
-    textprimary: '#0f0f0f',
-    whiteText:'#f0f0f0'
+    textprimary: '#365B6D',
+    whiteText:'#f0f0f0',
+    yellow:'#FFAA00'
 }
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.bg,
+        // backgroundColor: colors.bg,
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 10
+        padding: 10,
+        paddingBottom:0,
     },
     settingscontainer: {
         flex: 1,
         backgroundColor: colors.bg,
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        padding: 10
+        justifyContent: 'center',
+        padding: 10,
+        width:'100%'
     },
     HomeImage: {
         width: 225,
@@ -44,12 +47,12 @@ export const styles = StyleSheet.create({
     },
     ModalText: {
         // fontFamily: ' Roboto',
-        margin: 20,
+        
         fontStyle: 'normal',
         fontWeight: '600',
-        fontSize: 18,
-        textAlign: 'justify',
-        color: '#FFf',
+        fontSize: 16,
+        textAlign: 'center',
+        color: colors.textprimary,
         // width:100
     },
     Modal: {
@@ -74,11 +77,13 @@ export const styles = StyleSheet.create({
     },
     
     WelcomeModal: {
-        alignSelf: 'center',
-        backgroundColor: '#5ABF5666',
-        borderColor: '#fff',
-        borderRadius: 20,
-        padding: 20
+       alignSelf: 'center',
+       width:'100%'
+        //backgroundColor: '#fff',
+        //borderColor: '#000',
+        // borderRadius: 20,
+        // padding: 20
+       // alignSelf:'stretch'
     },
     TextInput: {
         width: 200,
@@ -101,27 +106,22 @@ export const styles = StyleSheet.create({
         fontSize: 30
     },
     button: {
-        width: 203,
-        height: 39,
+          width: '100%',
+        paddingVertical:5,
         borderWidth: 2,
         margin: 5,
-        marginTop: 10,
-        borderColor: "#FFcA00",
+        borderColor: colors.yellow,
         borderStyle: "solid",
         // boxSizing: "border-box",
         borderRadius: 5,
-        backgroundColor:'#FFcA00',
+        backgroundColor:colors.yellow,
         alignItems: 'center'
     },
     buttonText: {
-        "width": 81,
-        "height": 39,
         // "fontFamily": "Roboto",
         "fontStyle": "normal",
         "fontWeight": "500",
         "fontSize": 20,
-        "alignItems": "center",
-        "textAlign": "center",
         "color": colors.textprimary
     },
     inputLabel:{

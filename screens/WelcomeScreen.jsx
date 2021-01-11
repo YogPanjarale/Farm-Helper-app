@@ -8,7 +8,7 @@ import {
   Image,
   Modal,
 } from "react-native";
-import { Input,ThemeProvider } from "react-native-elements";
+import { Input, ThemeProvider } from "react-native-elements";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -16,7 +16,7 @@ import db from "../config";
 // import { TextInput, } from 'react-native-paper';
 // import { Icon } from 'react-native-elements'
 
-import { styles,colors } from "../Styles";
+import { styles, colors } from "../Styles";
 
 class WelcomeScreen extends Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class WelcomeScreen extends Component {
       .then((response) => {
         this.props.navigation.navigate("Home");
 
-        return //alert("Logged In", response);
+        return; //alert("Logged In", response);
       })
       .catch((error) => {
         var errorcode = error.code;
@@ -79,36 +79,25 @@ class WelcomeScreen extends Component {
     return (
       <ImageBackground
         source={require("../assets/bg_green.jpg")}
-        style={styles.container}
+        style={{ flex: 1, justifyContent: "center", alignContent: "center" }}
       >
-        {this.state.isSignUp ? null : (
-          <Image
-            source={require("../assets/logo 3.5.png")}
-            style={styles.HomeImage}
-          />
-        )}
-
-        {/* <Text style={styles.HomeHeading}>
+        <View style={styles.container}>
+          {/* <View style={styles.container}> */}
+          {this.state.isSignUp ? null : (
+            <Image
+              source={require("../assets/logo 3.5.png")}
+              style={styles.HomeImage}
+            />
+          )}
+          {/*//Todo :login to your account text*/
+  }
+          {/* <Text style={styles.HomeHeading}>
                     Farm Helper App
                   </Text> */}
-        {this.state.isSignUp ? <this.SignUpModal /> : <this.LogInModal />}
-        <TouchableOpacity
-          onPress={
-            this.state.isSignUp
-              ? () => {
-                  this.setState({ isSignUp: false });
-                }
-              : () => {
-                  this.setState({ isSignUp: true });
-                }
-          }
-        >
-          <Text style={styles.ModalText}>
-            {this.state.isSignUp
-              ? "Already Have an Account? LogIn "
-              : " Don't Have an Account? SignUp "}
-          </Text>
-        </TouchableOpacity>
+          {this.state.isSignUp ? <this.SignUpModal /> : <this.LogInModal />}
+        </View>
+
+        {this.bottomOption()}
       </ImageBackground>
     );
   }
@@ -123,7 +112,7 @@ class WelcomeScreen extends Component {
     7. Confirm Password 
     */
   SignUpModal = () => (
-    <Modal style={styles.WelcomeModal} animationType="slide">
+    <View style={styles.WelcomeModal} animationType="slide">
       {/* <MyInput
         id=" Input first name"
         label="First Name"
@@ -204,10 +193,10 @@ class WelcomeScreen extends Component {
       >
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
-    </Modal>
+    </View>
   );
   LogInModal = () => (
-    <Modal style={styles.WelcomeModal} animationType="slide">
+    <View style={styles.WelcomeModal} animationType="slide">
       <MyInput
         id="email Input"
         label="Email"
@@ -235,22 +224,64 @@ class WelcomeScreen extends Component {
           <Text style={styles.buttonText}>Log In</Text>
         </TouchableOpacity>
       </View>
-    </Modal>
+    </View>
   );
-}
 
-const theme={
-  Input:{
-    inputStyle:styles.inputStyle,
-    inputContainerStyle:styles.inputContainer,
-    labelStyle:styles.inputLabel
+  bottomOption() {
+    return (
+      <View style={{ backgroundColor: "#FFAA00" }}>
+        <TouchableOpacity
+          onPress={
+            this.state.isSignUp
+              ? () => {
+                  this.setState({ isSignUp: false });
+                }
+              : () => {
+                  this.setState({ isSignUp: true });
+                }
+          }
+          style={{ paddingHorizontal: 10, paddingVertical: 5 }}
+        >
+          <Text style={styles.ModalText}>
+            {this.state.isSignUp
+              ? "Already Have an Account? LogIn "
+              : " Don't Have an Account? SignUp "}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
 }
+
+const theme = {
+  Input: {
+    inputStyle: styles.inputStyle,
+    inputContainerStyle: styles.inputContainer,
+    labelStyle: styles.inputLabel,
+  },
+};
 class MyInput extends Component {
   render() {
-    
     return (
-      <ThemeProvider theme={theme}> 
+      <TextInput
+        value={this.props.value}
+        onChangeText={this.props.onChangeText}
+        placeholder={this.props.label}
+        style={{
+          width: "100%",
+          marginVertical: 10,
+          paddingHorizontal: 15,
+          paddingVertical: 5,
+          backgroundColor: "#fff",
+          alignSelf: "center",
+          borderWidth: 1,
+          borderBottomWidth: 3,
+          borderColor: "#222",
+        }}
+      />
+    );
+    {
+      /* <ThemeProvider theme={theme}> 
       <Input
         id={this.props.id}
         label={this.props.label}
@@ -258,8 +289,8 @@ class MyInput extends Component {
        
         onChangeText={this.props.onChangeText}
       />
-      </ThemeProvider>
-    );
+    </ThemeProvider>*/
+    }
   }
 }
 
