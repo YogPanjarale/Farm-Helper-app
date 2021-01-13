@@ -47,12 +47,12 @@ export const TabNavigator = createBottomTabNavigator({
         return focused ? (
           <Image
             style={{ width: size, height: size }}
-            source={require("../assets/light filled.png")}
+            source={require("../assets/lightFilled.png")}
           />
         ) : (
           <Image
             style={{ width: size, height: size }}
-            source={require("../assets/light outline.png")}
+            source={require("../assets/lightOutline.png")}
           />
         );
       },

@@ -4,7 +4,7 @@
     "slug": "FarmHelperApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo 3.5.png",
+    "icon": "./assets/logo3.5.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo 3.5.png",
+        "foregroundImage": "./assets/logo3.5.png",
         "backgroundColor": "#FFFFFF"
       }
     },

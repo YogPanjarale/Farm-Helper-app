@@ -16,7 +16,7 @@ var _style= StyleSheet.create({
     },
     textInline:{
         fontSize:14,
-        fontWeight:600,
+        fontWeight:"600",
     },
     img:{
         width: 30, height: 30 ,marginRight:10
@@ -29,6 +29,10 @@ class MotorsScreen extends Component {
             motorId: "motorId",
             data: {},
         };
+        this.motorOn= require('../assets/pumpOn.png');
+        this.motorOff= require('../assets/pumpOff.png');
+        this.powerOn= require('../assets/powerOn.png');
+        this.powerOff= require('../assets/powerOff.png');
     }
     toggleMotors = async () => {
         rldb.ref(`/devices/${this.state.motorId}/mainMotor`).update({
@@ -88,7 +92,7 @@ class MotorsScreen extends Component {
                 <Text style={{ fontSize: 25, fontWeight: 900 }}>Main Motor</Text>
                 <View style={_style.spaceBetween}>
                     <View style={_style.inRow}>
-                    <Image style={_style.img} source={require('../assets/pump' + onOrOff(isOn) + '.png')} />
+                    <Image style={_style.img} source={isOn?this.motorOn:this.motorOff} />
                     <Text style={_style.textInline}>
                         Motor Status : <Text>{onOrOff(isOn)}</Text>
                     </Text>
@@ -103,7 +107,7 @@ class MotorsScreen extends Component {
                     
                 </View>
                 <View style={_style.inRow}>
-                    <Image style={_style.img} source={require('../assets/power' + onOrOff(powerStatus) + '.png')} />
+                    <Image style={_style.img} source={powerStatus?this.powerOn:this.powerOff} />
                     <Text style={_style.textInline}>
                         Power Status : <Text>{onOrOff(powerStatus)}</Text>
                     </Text>

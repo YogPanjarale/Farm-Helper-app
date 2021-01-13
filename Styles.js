@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
     HomeHeading: {
         // fontFamily: ' Roboto',
         fontStyle: 'normal',
-        fontWeight: '600',
+        fontWeight: "600",
         fontSize: 30,
         textAlign: 'center',
         color: "#fff",
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
         // fontFamily: ' Roboto',
         
         fontStyle: 'normal',
-        fontWeight: '600',
+        fontWeight: "600",
         fontSize: 16,
         textAlign: 'center',
         color: colors.textprimary,

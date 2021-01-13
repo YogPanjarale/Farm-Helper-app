@@ -85,7 +85,7 @@ class WelcomeScreen extends Component {
           {/* <View style={styles.container}> */}
           {this.state.isSignUp ? null : (
             <Image
-              source={require("../assets/logo 3.5.png")}
+              source={require("../assets/logo3.5.png")}
               style={styles.HomeImage}
             />
           )}

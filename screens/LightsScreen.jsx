@@ -21,7 +21,7 @@ var style = StyleSheet.create({
   },
   textInline: {
     fontSize: 14,
-    fontWeight: 600,
+    fontWeight: "600",
   },
   img: {
     width: 30,
@@ -38,6 +38,8 @@ class MotorsScreen extends Component {
       mainGate: true,
       motorRoom: true,
     };
+    this.powerOn= require('../assets/powerOn.png');
+    this.powerOff= require('../assets/powerOff.png');
   }
   toggleMainGate = async () => {
     rldb.ref(`/devices/${this.state.motorId}/`).update({
@@ -110,7 +112,7 @@ class MotorsScreen extends Component {
           <View style={style.inRow}>
             <Image
               style={style.img}
-              source={require("../assets/power" + onOrOff(mainGate) + ".png")}
+              source={mainGate?this.powerOn:this.powerOff}
             />
             <Text style={style.textInline}>
               Main Gate Light : <Text>{onOrOff(mainGate)}</Text>
@@ -128,7 +130,7 @@ class MotorsScreen extends Component {
           <View style={{ flex: 1, flexDirection: "row" }}>
             <Image
               style={style.img}
-              source={require("../assets/power" + onOrOff(motorRoom) + ".png")}
+              source={motorRoom?this.powerOn:this.powerOff}
             />
             <Text style={style.textInline}>
               Motor Room Light : <Text>{onOrOff(motorRoom)}</Text>
