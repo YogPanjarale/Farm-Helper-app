@@ -101,7 +101,7 @@ class SettingScreen extends Component {
             onChangeText={(value) => {
               this.setState({ input_mobileNumber: value });
             }}
-            iconName="mobile"
+            iconName="contacts"
           />
 
           <MyInput

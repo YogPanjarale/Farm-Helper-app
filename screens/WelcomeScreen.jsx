@@ -60,7 +60,7 @@ class WelcomeScreen extends Component {
       Contact: this.state.input_mobileNumber,
       Address: this.state.input_address,
       userName: this.state.input_userName,
-      email_id: this.state.input_email,
+      email_id: this.state.input_email.toLowerCase(),
     });
     firebase
       .auth()
