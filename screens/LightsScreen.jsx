@@ -10,14 +10,16 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 var style = StyleSheet.create({
   spaceBetween: {
-    flex: 1,
+    //flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     marginVertical:5,
+    //height:"100%"
   },
   inRow: {
-    flex: 1,
+    //flex: 1,
     flexDirection: "row",
+    //height:"100%"
   },
   textInline: {
     fontSize: 14,
@@ -104,7 +106,7 @@ class MotorsScreen extends Component {
     var motorRoom = this.state.motorRoom;
     return (
       <View style={styles.Modal}>
-        <Text style={{ fontSize: 25, fontWeight: 900,alignText:'center'}}>Lights Control</Text>
+        <Text style={{ fontSize: 25, fontWeight: "900",textAlign:"center"}}>Lights Control</Text>
           {
             //TODO : Add Lights Image
           }
@@ -152,7 +154,7 @@ class MotorsScreen extends Component {
       <View style={{ flex: 1 }}>
         <MyHeader title="Control Motors" navigation={this.props.navigation} />
         <View style={styles.container}>
-          <Text style={{ fontWeight: 800 }}>{this.state.motorId}</Text>
+          <Text style={{ fontWeight: "800" }}>{this.state.motorId}</Text>
           {/* <Text>{JSON.stringify(this.state.data)}</Text> */}{
               this.state.motorId!=null?
           <this.Panel></this.Panel>:<Text>Motor Id Not Found </Text>

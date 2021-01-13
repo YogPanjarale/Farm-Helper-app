@@ -136,8 +136,8 @@ class TaskList extends Component {
               key={i}
             >
               <View>
-                <Text style={{ fontWeight: 900 }}>{task.taskName}</Text>
-                <Text style={{ fontWeight: 500 }}>{task.description}</Text>
+                <Text style={{ fontWeight: "900" }}>{task.taskName}</Text>
+                <Text style={{ fontWeight: "500" }}>{task.description}</Text>
               </View>
               <Icon
                 reverse

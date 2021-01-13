@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo3.5.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.yogpanjarale.FarmHelperApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

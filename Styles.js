@@ -56,7 +56,7 @@ export const styles = StyleSheet.create({
         // width:100
     },
     Modal: {
-        alignSelf: 'center',
+        //alignSelf: 'center',
         backgroundColor: '#fff',
         borderColor: '#fff',
         borderRadius: 20,

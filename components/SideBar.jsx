@@ -49,7 +49,7 @@ class SideBar extends Component {
                         <Text style={
                             {
                                 fontSize: 18,
-                                fontWeight: 'bold',
+                                fontWeight:"bold",
                                 color:'#fff',
                                 marginRight:20,
                             }
