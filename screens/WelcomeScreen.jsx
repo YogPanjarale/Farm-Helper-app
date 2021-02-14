@@ -89,11 +89,6 @@ class WelcomeScreen extends Component {
               style={styles.HomeImage}
             />
           )}
-          {/*//Todo :login to your account text*/
-  }
-          {/* <Text style={styles.HomeHeading}>
-                    Farm Helper App
-                  </Text> */}
           {this.state.isSignUp ? <this.SignUpModal /> : <this.LogInModal />}
         </View>
 
@@ -280,17 +275,6 @@ class MyInput extends Component {
         }}
       />
     );
-    {
-      /* <ThemeProvider theme={theme}> 
-      <Input
-        id={this.props.id}
-        label={this.props.label}
-        value={this.props.value}
-       
-        onChangeText={this.props.onChangeText}
-      />
-    </ThemeProvider>*/
-    }
   }
 }
 
