@@ -28,7 +28,9 @@ export default class AuthScreen extends Component<{}, AuthScreenState> {
 				this.state.passwordInput
 			)
 			.then(() => {
-				console.log("hello");
+				this.setState({
+					errorMessage: "",
+				})
 				// this.props.navigator.pop();
 			})
 			.catch((error) => {
