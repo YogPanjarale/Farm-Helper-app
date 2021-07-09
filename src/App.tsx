@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, Platform ,StatusBar} from 'react-native';
 import AuthScreen from './screens/AuthScreen';
 import {auth} from './firebase';
 import Tabs from './components/tabs';
@@ -11,7 +10,6 @@ export default function App() {
    })
   return (
     <SafeAreaView   style={styles.container}>
-      <StatusBar style="auto" />
       {authState?<Tabs/>:<AuthScreen/>}
       {/* <Text>{JSON.stringify(authState)}</Text> */}
     </SafeAreaView>
@@ -21,5 +19,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // paddingTop:Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
 });
