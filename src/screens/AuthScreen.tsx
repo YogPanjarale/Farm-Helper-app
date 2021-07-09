@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { ImageBackground, KeyboardAvoidingView, Platform } from "react-native";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { Button, TextInput } from "react-native-paper";
+import { auth } from "../firebase";
 
 //typescript type with emailInput, passwordInput confirm passwordInput
 type AuthScreenState = {
 	emailInput: string;
 	passwordInput: string;
-	confirmPasswordInput: string;
 	errorMessage: string;
 	hidePassword: boolean;
 };
@@ -17,10 +17,25 @@ export default class AuthScreen extends Component<{}, AuthScreenState> {
 		this.state = {
 			emailInput: "",
 			passwordInput: "",
-			confirmPasswordInput: "",
 			errorMessage: "",
 			hidePassword: true,
 		};
+	}
+	login() {
+		auth()
+			.signInWithEmailAndPassword(
+				this.state.emailInput,
+				this.state.passwordInput
+			)
+			.then(() => {
+				console.log("hello");
+				// this.props.navigator.pop();
+			})
+			.catch((error) => {
+				this.setState({
+					errorMessage: error.message,
+				});
+			});
 	}
 	render() {
 		return (
@@ -30,7 +45,6 @@ export default class AuthScreen extends Component<{}, AuthScreenState> {
 				style={{ flex: 1 }}
 			>
 				<View style={styles.container}>
-					
 					{/* <Text style={styles.logo}> Farm Helper App </Text> */}
 					<Image
 						source={require("../../assets/icon.png")}
@@ -71,9 +85,15 @@ export default class AuthScreen extends Component<{}, AuthScreenState> {
 								/>
 							}
 						/>
+						<Text style={{ color: "red", marginTop: 5 }}>
+							{this.state.errorMessage}
+						</Text>
 						<Button
 							mode="contained"
-							onPress={() => console.log("Pressed")}
+							onPress={() => {
+								console.log("Pressed");
+								this.login();
+							}}
 							style={styles.button}
 						>
 							Login
@@ -100,7 +120,7 @@ const styles = StyleSheet.create({
 		// alignItems: "center",
 	},
 	button: {
-		marginTop: 24,
+		marginTop: 16,
 	},
 	image: {
 		width: 250,
