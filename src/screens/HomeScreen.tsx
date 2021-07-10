@@ -1,59 +1,77 @@
 import React, { Component } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
-import { Appbar, Button, FAB } from "react-native-paper";
+import { Alert, FlatList, StyleSheet, View } from "react-native";
+import {
+	Appbar,
+	Button,
+	Dialog,
+	FAB,
+	HelperText,
+	Portal,
+	TextInput,
+} from "react-native-paper";
 import { auth, firestore } from "../firebase";
-import { dateToTimeAgo } from "../utils/converters";
-import { turnDevice } from "../utils/device";
-type device = {
+import { Device } from "../components/Device";
+import { addDevice } from "../utils/device";
+export type device = {
 	authToken: string;
 	battery: number;
 	bypass: boolean;
 	lastSeen: {
 		nanoseconds: number;
 		seconds: number;
-	};
+	} | null;
 	motorOn: boolean;
 	nickName: string;
 };
+type AddModel = {
+	addDialogVisible: boolean;
+	authToken: string;
+	nickName: string;
+	errorText: string;
+};
 type State = {
 	devices: Array<device>;
-};
-const Device = ({ item }: { item: device }) => {
-	function handleButton(value:boolean) {
-		turnDevice(value,item.authToken)
-	}
-	return (
-		<View style={styles.device}>
-			<View style={{flex:1,flexDirection:"row-reverse"}}>
-				<Text style={{color:item.motorOn?"green":"red"}}>{item.motorOn?"On":"Off"}</Text>
-			<View style={{flex:1,flexDirection:"column"}}>
-			<Text style={styles.deviceName}>{item.nickName}</Text>
-			<Text style={styles.deviceDescription}>
-				Battery : {item.battery}v
-			</Text>
-			<Text>
-				Last Seen {dateToTimeAgo(new Date(item.lastSeen.seconds * 1000))}
-				{new Date(item.lastSeen.seconds * 1000).toLocaleString()}
-			</Text>
-			</View>
-			
-			</View>
-			<View style={{flex:1,flexDirection:"row"}}>
-				<Button style={{flex:1}} onPress={()=>handleButton(true)} disabled={item.motorOn} >On</Button>
-				<Button style={{flex:1}} onPress={()=>handleButton(false)} disabled={!item.motorOn} 
-				>Off</Button>
-				<View style={{flex:1}}></View>
-			</View>
-		</View>
-	);
+	addModel: AddModel;
 };
 export default class HomeScreen extends Component<{}, State> {
 	constructor(props: {} | Readonly<{}>) {
 		super(props);
 		this.state = {
 			devices: [],
+			addModel: {
+				addDialogVisible: false,
+				authToken: "",
+				nickName: "",
+				errorText: "",
+			},
 		};
 	}
+	 setNickName = (nickName: string) => {
+		const addModel = { ...this.state.addModel };
+		addModel.nickName = nickName;
+		this.setState({ addModel: addModel });
+	};
+	 setAuthTokenName = (authToken: string) => {
+		const addModel = { ...this.state.addModel };
+		addModel.authToken = authToken;
+		this.setState({ addModel: addModel });
+	};
+	 setErrorText = (errorText: string) => {
+		const addModel = { ...this.state.addModel };
+		addModel.errorText = errorText;
+		this.setState({ addModel: addModel });
+	};
+	 showDialog = () => {
+		const addModel = { ...this.state.addModel };
+		addModel.addDialogVisible = true;
+		this.setState({ addModel: addModel });
+	};
+
+	 hideDialog = () => {
+		const addModel = { ...this.state.addModel };
+		addModel.addDialogVisible = true;
+		this.setState({ addModel: addModel });
+	};
 	componentDidMount = () => {
 		const authId = auth().currentUser?.uid;
 		firestore
@@ -68,8 +86,71 @@ export default class HomeScreen extends Component<{}, State> {
 				this.setState({ devices: docs });
 			});
 	};
-
 	render() {
+	
+		const CDialog = () => {
+			
+
+			const addDeviceHandler = () => {
+				if (this.state.addModel.authToken.trim() === "") {
+					return this.setErrorText("Please enter a valid auth Token");
+				}
+				if (this.state.addModel.nickName.trim() === "") {
+					return this.setErrorText("Please enter a valid nick name");
+				}
+				addDevice(
+					this.state.addModel.authToken,
+					this.state.addModel.nickName
+				);
+				this.setState({
+					addModel: {
+						addDialogVisible: false,
+						authToken: "",
+						nickName: "",
+						errorText: "",
+					},
+				});
+				this.hideDialog();
+			};
+			return (
+				<Portal>
+					<Dialog
+						visible={this.state.addModel.addDialogVisible}
+						onDismiss={this.hideDialog}
+					>
+						<Dialog.Title>Add Device</Dialog.Title>
+						<Dialog.Content>
+							<TextInput
+								style={styles.input}
+								label="Nick Name"
+								mode="flat"
+								onChangeText={this.setNickName}
+								value={this.state.addModel.nickName}
+							/>
+							<TextInput
+								style={styles.input}
+								label="Auth token"
+								mode="flat"
+								onChangeText={this.setAuthTokenName}
+								value={this.state.addModel.authToken}
+							/>
+							<HelperText
+								type="error"
+								visible={
+									this.state.addModel.errorText.trim() !== ""
+								}
+							>
+								{this.state.addModel.errorText}
+							</HelperText>
+						</Dialog.Content>
+						<Dialog.Actions>
+							<Button onPress={this.hideDialog}>Cancel</Button>
+							<Button onPress={addDeviceHandler}>Done</Button>
+						</Dialog.Actions>
+					</Dialog>
+				</Portal>
+			);
+		};
 		return (
 			<View style={styles.container}>
 				<Appbar.Header>
@@ -80,11 +161,13 @@ export default class HomeScreen extends Component<{}, State> {
 					renderItem={({ item }) => <Device item={item} />}
 					keyExtractor={(item, index) => index.toString()}
 				></FlatList>
+				<CDialog />
 				<FAB
 					style={styles.fab}
 					icon="plus"
 					onPress={() => {
 						console.log("Add Pressed");
+						this.showDialog();
 					}}
 					color="#ffaa00"
 					label="Add Device"
@@ -93,16 +176,8 @@ export default class HomeScreen extends Component<{}, State> {
 		);
 	}
 }
-const styles = StyleSheet.create({
-	device: {
-		backgroundColor: "#ffffffaf",
-		marginHorizontal: 10,
-		marginVertical: 5,
-		paddingVertical: 10,
-		paddingHorizontal: 10,
-		// paddigLeft:20,
-		borderRadius: 5,
-	},
+export const styles = StyleSheet.create({
+
 	deviceName: {
 		fontSize: 16,
 		fontWeight: "500",
@@ -113,6 +188,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 		// justifyContent: "center",
 		// alignItems: "center",
+	},
+	input: {
+		backgroundColor: "#f0f0f04f",
 	},
 	fab: {
 		position: "absolute",

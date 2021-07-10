@@ -32,7 +32,7 @@
 		? f(min, "min")
 		: day >= 1
 		? f(sec, "sec")
-		: "";
+		: "just now";
 
 
 	throw new Error("Date To time ago not implmented");
