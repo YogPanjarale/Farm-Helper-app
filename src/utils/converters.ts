@@ -14,7 +14,7 @@
 		diffDate.getHours(),
 		diffDate.getDate() - 1,
 		diffDate.getMonth(),
-        diffDate.getFullYear()
+        diffDate.getFullYear()-1970
 	];
 	const f = (property: number, end: string) =>{
 		// console.log(property,end)
