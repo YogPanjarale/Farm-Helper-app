@@ -28,7 +28,7 @@ export default class ProfileScreen extends Component<{},State> {
             <View style={styles.container}>
                 {/* <Text> Profile Screen </Text> */}
                 {/* <Text>{JSON.stringify(this.state?.user)}</Text> */}
-                <Text style={styles.text}>signed in as {this.state?.user?.email}</Text>
+                <Text style={styles.text}>Signed in as {this.state?.user?.email}</Text>
                 <Button  mode="contained" onPress={()=>{this.logout()}}>Log out</Button>
             </View>
             </View>
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
     text:{
-        fontSize:20,
+        fontSize:16,
         margin:10,
         fontWeight:'500'
     }

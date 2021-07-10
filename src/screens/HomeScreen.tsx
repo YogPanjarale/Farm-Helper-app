@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import { Appbar, FAB } from "react-native-paper";
+import { Appbar, Button, FAB } from "react-native-paper";
 import { auth, firestore } from "../firebase";
+import { dateToTimeAgo } from "../utils/converters";
+import { turnDevice } from "../utils/device";
 type device = {
 	authToken: string;
 	battery: number;
@@ -17,10 +19,31 @@ type State = {
 	devices: Array<device>;
 };
 const Device = ({ item }: { item: device }) => {
+	function handleButton(value:boolean) {
+		turnDevice(value,item.authToken)
+	}
 	return (
 		<View style={styles.device}>
+			<View style={{flex:1,flexDirection:"row-reverse"}}>
+				<Text style={{color:item.motorOn?"green":"red"}}>{item.motorOn?"On":"Off"}</Text>
+			<View style={{flex:1,flexDirection:"column"}}>
 			<Text style={styles.deviceName}>{item.nickName}</Text>
-			<Text style={styles.deviceBattery}>{item.battery}%</Text>
+			<Text style={styles.deviceDescription}>
+				Battery : {item.battery}v
+			</Text>
+			<Text>
+				Last Seen {dateToTimeAgo(new Date(item.lastSeen.seconds * 1000))}
+				{new Date(item.lastSeen.seconds * 1000).toLocaleString()}
+			</Text>
+			</View>
+			
+			</View>
+			<View style={{flex:1,flexDirection:"row"}}>
+				<Button style={{flex:1}} onPress={()=>handleButton(true)} disabled={item.motorOn} >On</Button>
+				<Button style={{flex:1}} onPress={()=>handleButton(false)} disabled={!item.motorOn} 
+				>Off</Button>
+				<View style={{flex:1}}></View>
+			</View>
 		</View>
 	);
 };
@@ -71,9 +94,21 @@ export default class HomeScreen extends Component<{}, State> {
 	}
 }
 const styles = StyleSheet.create({
-	device: {},
-	deviceName: {},
-	deviceBattery: {},
+	device: {
+		backgroundColor: "#ffffffaf",
+		marginHorizontal: 10,
+		marginVertical: 5,
+		paddingVertical: 5,
+		paddingHorizontal: 10,
+		// paddigLeft:20,
+		borderRadius: 5,
+	},
+	deviceName: {
+		fontSize: 16,
+		fontWeight: "500",
+		textTransform: "uppercase",
+	},
+	deviceDescription: {},
 	container: {
 		flex: 1,
 		// justifyContent: "center",
