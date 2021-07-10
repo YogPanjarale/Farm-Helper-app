@@ -32,6 +32,7 @@ type AddModel = {
 type State = {
 	devices: Array<device>;
 	addModel: AddModel;
+	sub:()=> void;
 };
 export default class HomeScreen extends Component<{}, State> {
 	constructor(props: {} | Readonly<{}>) {
@@ -44,6 +45,7 @@ export default class HomeScreen extends Component<{}, State> {
 				nickName: "",
 				errorText: "",
 			},
+			sub:()=>{}
 		};
 	}
 	 setNickName = (nickName: string) => {
@@ -74,10 +76,10 @@ export default class HomeScreen extends Component<{}, State> {
 	};
 	componentDidMount = () => {
 		const authId = auth().currentUser?.uid;
-		firestore
+		const sub= firestore
 			.collection("users")
 			.doc(authId)
-			.collection("device")
+			.collection("devices")
 			.onSnapshot((snapshot) => {
 				const docs = snapshot.docs.map((doc) =>
 					doc.data()
@@ -85,33 +87,38 @@ export default class HomeScreen extends Component<{}, State> {
 				console.log(docs);
 				this.setState({ devices: docs });
 			});
+			this.setState({sub})
+		
+	};
+	componentWillUnmount(){
+		this.state.sub();
+	}
+	 addDeviceHandler = async () => {
+		if (this.state.addModel.authToken.trim() === "") {
+			return this.setErrorText("Please enter a valid auth Token");
+		}
+		if (this.state.addModel.nickName.trim() === "") {
+			return this.setErrorText("Please enter a valid nick name");
+		}
+		await addDevice(
+			this.state.addModel.authToken,
+			this.state.addModel.nickName
+		);
+		this.setState({
+			addModel: {
+				addDialogVisible: false,
+				authToken: "",
+				nickName: "",
+				errorText: "",
+			},
+		});
+		this.hideDialog();
 	};
 	render() {
 	
 		const CDialog = () => {
 			
 
-			const addDeviceHandler = () => {
-				if (this.state.addModel.authToken.trim() === "") {
-					return this.setErrorText("Please enter a valid auth Token");
-				}
-				if (this.state.addModel.nickName.trim() === "") {
-					return this.setErrorText("Please enter a valid nick name");
-				}
-				addDevice(
-					this.state.addModel.authToken,
-					this.state.addModel.nickName
-				);
-				this.setState({
-					addModel: {
-						addDialogVisible: false,
-						authToken: "",
-						nickName: "",
-						errorText: "",
-					},
-				});
-				this.hideDialog();
-			};
 			return (
 				<Portal>
 					<Dialog
@@ -145,7 +152,7 @@ export default class HomeScreen extends Component<{}, State> {
 						</Dialog.Content>
 						<Dialog.Actions>
 							<Button onPress={this.hideDialog}>Cancel</Button>
-							<Button onPress={addDeviceHandler}>Done</Button>
+							<Button onPress={this.addDeviceHandler}>Done</Button>
 						</Dialog.Actions>
 					</Dialog>
 				</Portal>
