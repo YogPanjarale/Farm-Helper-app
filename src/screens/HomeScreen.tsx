@@ -2,16 +2,12 @@ import React, { Component } from "react";
 import { Alert, FlatList, StyleSheet, View } from "react-native";
 import {
 	Appbar,
-	Button,
-	Dialog,
 	FAB,
-	HelperText,
-	Portal,
-	TextInput,
 } from "react-native-paper";
 import { auth, firestore } from "../firebase";
 import { Device } from "../components/Device";
 import { addDevice } from "../utils/device";
+import { AddPopUp } from "../components/AddPopUp";
 export type device = {
 	authToken: string;
 	battery: number;
@@ -34,57 +30,6 @@ type State = {
 	addModel: AddModel;
 	sub: () => void;
 };
-type AddPopUpProps = {
-	addModel: {
-		addDialogVisible: boolean;
-		nickName: string | undefined;
-		authToken: string | undefined;
-		errorText: string | null | undefined;
-	};
-	hideDialog: (() => void) | undefined;
-	setNickName: (((text: string) => void) & Function) | undefined;
-	setAuthTokenName: (((text: string) => void) & Function) | undefined;
-	addDeviceHandler: (() => void) | undefined;
-};
-function AddPopUp(props: AddPopUpProps) {
-	return (
-		<Portal>
-			<Dialog
-				visible={props.addModel.addDialogVisible}
-				onDismiss={props.hideDialog}
-			>
-				<Dialog.Title>Add Device</Dialog.Title>
-				<Dialog.Content>
-					<TextInput
-						style={styles.input}
-						label="Nick Name"
-						mode="flat"
-						onChangeText={props.setNickName}
-						value={props.addModel.nickName}
-					/>
-					<TextInput
-						style={styles.input}
-						label="Auth token"
-						mode="flat"
-						onChangeText={props.setAuthTokenName}
-						value={props.addModel.authToken}
-					/>
-					<HelperText
-						type="error"
-						visible={props.addModel.errorText?.trim() !== ""}
-					>
-						{props.addModel.errorText}
-					</HelperText>
-				</Dialog.Content>
-				<Dialog.Actions>
-					<Button onPress={props.hideDialog}>Cancel</Button>
-					<Button onPress={props.addDeviceHandler}>Done</Button>
-				</Dialog.Actions>
-			</Dialog>
-		</Portal>
-	);
-}
-
 export default class HomeScreen extends Component<{}, State> {
 	constructor(props: {} | Readonly<{}>) {
 		super(props);
