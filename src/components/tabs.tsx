@@ -13,8 +13,8 @@ const AccountRoute = ()=><ProfileScreen/>
 export default () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'home', title: 'Home', icon: 'home' },
     { key: 'schedule', title: 'Schecule', icon: 'calendar-clock' },
+    { key: 'home', title: 'Home', icon: 'home' },
     { key: 'account', title: 'Account', icon: 'account' },
   ]);
 
