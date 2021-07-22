@@ -5,6 +5,8 @@ import { dateToTimeAgo } from "../utils/converters";
 import { turnDevice } from "../utils/device";
 import { device } from "../screens/HomeScreen";
 import { Alert } from "react-native";
+// import { functions } from "../firebase";
+import firebase from "firebase";
 
 export const Device = ({ item }: { item: device }) => {
 	function handleButton(value: boolean) {
@@ -30,7 +32,10 @@ export const Device = ({ item }: { item: device }) => {
 			);
 		}
 	}
-
+	function reload() {
+		const updateDevice = firebase.functions().httpsCallable("updateDevice")
+		updateDevice({deviceId:item.authToken})
+	}
 	return (
 		<Surface style={styles.device}>
 			<View style={{ flex: 1, flexDirection: "row-reverse" }}>
@@ -69,6 +74,14 @@ export const Device = ({ item }: { item: device }) => {
 					disabled={!item.motorOn}
 				>
 					Off
+				</Button>
+				<Button
+					style={{ flex: 1 }}
+					onPress={() => reload()}
+					// disabled={!item.motorOn}
+					icon="reload"
+				>
+					
 				</Button>
 				<View style={{ flex: 1 }}></View>
 			</View>
